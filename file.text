@@ -1,0 +1,58 @@
+mysql -u root -p
+
+CREATE DATABASE schoolDB;
+
+USE schoolDB
+
+SHOW DATABASES;
+
+CREATE TABLE teachers(id int,
+    first_name varchar(250),
+    last_name varchar(250),
+    subjectt varchar(250));
+
+SHOW TABLES;
+
+DESCRIBE teachers;
+
+INSERT INTO teachers(id, first_name, last_name, subjectt)
+    VALUES (1, 'John', 'Doe', 'Math'),
+           (2, 'Jane', 'Smith', 'Science');
+
+select * from teachers;
+
+
+select first_name , subjectt from teachers;
+
+CREATE TABLE students(
+        id INT PRIMARY KEY,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        teacher_id INT
+     );
+
+INSERT INTO students(id, first_name, last_name, teacher_id)
+     VALUES (1, 'Alice', 'Brown', 1),
+            (2, 'Bob', 'Johnson', 2); 
+
+SHOW TABLES;
+
+DESCRIBE students;
+
+SELECT * FROM students;
+
+SELECT students.first_name,teachers.first_name
+    FROM students
+    INNER JOIN teachers ON students.id=teachers.id;
+
+SELECT students.first_name, teachers.first_name
+    FROM students
+    LEFT JOIN teachers ON students.id=teachers.id;
+
+SELECT students.first_name, teachers.first_name
+    FROM teachers
+    RIGHT JOIN students ON students.id=teachers.id;
+
+SELECT *
+ FROM students
+ FULL JOIN teachers;
